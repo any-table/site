@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
 # Build anytable.org. Used as the Cloudflare Pages build command.
 #
-#   ANYTABLE_REF  branch or tag of any-table/anytable to publish (default: main).
-#                 Set to "latest-tag" to publish the newest v* tag instead.
+#   ANYTABLE_REF  what to publish from any-table/anytable (default: latest-tag,
+#                 the newest release tag of the form vMAJOR.MINOR.PATCH).
+#                 Any branch or tag name also works, e.g. main for a preview.
 #   ANYTABLE_DIR  build from a local checkout instead of cloning, e.g. ../anytable
 set -euo pipefail
 cd "$(dirname "$0")"
 
 REPO_URL="https://github.com/any-table/anytable.git"
-REF="${ANYTABLE_REF:-main}"
+REF="${ANYTABLE_REF:-latest-tag}"
 
 if [ -z "${ANYTABLE_DIR:-}" ]; then
   if [ "$REF" = "latest-tag" ]; then
-    REF="$(git ls-remote --tags --refs --sort=-version:refname "$REPO_URL" 'v*' | head -n1 | sed 's#.*refs/tags/##')"
+    # Release tags only: v1.2.3, not pre-release tags such as v1.2.3-rc1.
+    TAGS="$(git ls-remote --tags --refs "$REPO_URL" 'v*')"
+    REF="$(printf '%s\n' "$TAGS" \
+      | sed 's#.*refs/tags/##' \
+      | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
+      | sort -V | tail -n1 || true)"
     if [ -z "$REF" ]; then
-      echo "No v* tags found in $REPO_URL" >&2
+      echo "No vMAJOR.MINOR.PATCH tags found in $REPO_URL" >&2
       exit 1
     fi
   fi
