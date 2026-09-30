@@ -47,7 +47,15 @@ a:hover { text-decoration-thickness: 2px; }
   position: absolute;
   left: -999px;
 }
-.skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: 0.5rem; }
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--rule);
+}
 
 header.site, main, footer.site {
   max-width: var(--measure);
