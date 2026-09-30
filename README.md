@@ -49,6 +49,10 @@ npx serve public
 
 Node 20 or later is required (`.node-version` pins 22 for Cloudflare).
 
+## Checks
+
+Pull requests run `.github/workflows/check.yml`: `npm ci`, a build from the fixed release `v0.2.0`, and a check that the expected pages and files exist and the footer names that release.
+
 ## Social preview image
 
 `static/og.png` (1200×630) is rendered from `src/og.html`. It is committed, not built, because the Cloudflare build has no browser. After editing `src/og.html`:
@@ -57,3 +61,7 @@ Node 20 or later is required (`.node-version` pins 22 for Cloudflare).
 npm install --no-save playwright && npx playwright install chromium
 node scripts/render-og.mjs
 ```
+
+## License
+
+The code and design in this repository are dedicated to the public domain under [CC0 1.0 Universal](LICENSE). The text the site publishes lives in `any-table/anytable` and carries its own terms; see its `NOTICE.md`.
