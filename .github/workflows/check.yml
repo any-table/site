@@ -1,0 +1,55 @@
+# Builds the site from a fixed release of any-table/anytable and checks the
+# output, so changes to the build are tested against known text rather than
+# whatever the newest tag happens to be.
+
+name: Check build
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ANYTABLE_REF: v0.2.0
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Build from any-table/anytable ${{ env.ANYTABLE_REF }}
+        run: ./build.sh
+
+      - name: Check output
+        run: |
+          missing=0
+          for f in \
+            index.html foundational/index.html reading/index.html \
+            changelog/index.html contributing/index.html license/index.html \
+            404.html sitemap.xml robots.txt style.css favicon.svg og.png _headers
+          do
+            if [ ! -s "public/$f" ]; then
+              echo "::error::public/$f is missing or empty"
+              missing=1
+            fi
+          done
+          # v0.2.0 predates GOVERNANCE.md, so its page must be skipped, not broken.
+          if [ -e public/governance/index.html ]; then
+            echo "::error::public/governance/ should not exist for v0.2.0"
+            missing=1
+          fi
+          if ! grep -q 'Text version 0.2.0, built from .*v0.2.0' public/index.html; then
+            echo "::error::footer does not name v0.2.0"
+            missing=1
+          fi
+          exit $missing
