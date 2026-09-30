@@ -62,6 +62,10 @@ npm install --no-save playwright && npx playwright install chromium
 node scripts/render-og.mjs
 ```
 
+## Issues
+
+This repository has its own issue forms, for website problems and suggestions. Problems with the text itself (wording, citations, quotations, translations) belong in [any-table/anytable](https://github.com/any-table/anytable/issues/new/choose), and the issue chooser here links there. Security problems are reported privately; see the organization's [security policy](https://github.com/any-table/site/security/policy).
+
 ## License
 
 The code and design in this repository are dedicated to the public domain under [CC0 1.0 Universal](LICENSE). The text the site publishes lives in `any-table/anytable` and carries its own terms; see its `NOTICE.md`.

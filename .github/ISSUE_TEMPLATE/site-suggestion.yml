@@ -1,0 +1,43 @@
+name: Website suggestion
+description: Suggest a change to how anytable.org presents the text.
+title: "[Site idea]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for ideas about the website itself: navigation,
+        typography, readability, accessibility, or how pages are built.
+
+        The site deliberately has no JavaScript, no analytics, and no
+        third-party requests. Suggestions that would add those are unlikely
+        to be taken up.
+
+        To change the text, open an issue or pull request in
+        [any-table/anytable](https://github.com/any-table/anytable) instead.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why?
+      description: Who would this help, and how?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues for the same idea.
+          required: true
+        - label: I have not included private or safeguarding-related information.
+          required: true
