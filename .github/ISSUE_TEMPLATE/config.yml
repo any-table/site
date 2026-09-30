@@ -1,0 +1,18 @@
+# This repository has its own issue forms, so the organization defaults in
+# any-table/.github do not appear here. Problems with the text belong in
+# any-table/anytable, where those forms live.
+
+blank_issues_enabled: false
+
+contact_links:
+  - name: Problem with the text or its sources
+    url: https://github.com/any-table/anytable/issues/new/choose
+    about: Wording, citations, quotations, translations, and the other documents are kept in any-table/anytable. Report them there; this repository only builds the website.
+
+  - name: Questions and discussion
+    url: https://github.com/any-table/anytable/discussions
+    about: Ask questions, discuss interpretation, or share ideas that are not yet concrete changes.
+
+  - name: Safeguarding and private matters
+    url: https://github.com/any-table/anytable/blob/main/FOUNDATIONAL.md#on-harm-within
+    about: Do not disclose abuse reports, hard-truth statements, information about children or vulnerable people, or other private safeguarding material in a public GitHub issue.

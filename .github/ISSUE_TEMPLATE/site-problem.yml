@@ -1,0 +1,79 @@
+name: Website problem
+description: Report something broken or wrong on anytable.org, such as a page, link, layout, or the version it shows.
+title: "[Site]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for problems with how anytable.org is built or displayed.
+
+        If the words themselves are wrong (a citation, a quotation, a typo in
+        the text, an unclear passage), report it in
+        [any-table/anytable](https://github.com/any-table/anytable/issues/new/choose)
+        instead. The site only renders the newest release of that text, so a
+        fix there appears here once it is tagged.
+
+        For a security problem, do not open an issue. Use
+        [private vulnerability reporting](https://github.com/any-table/site/security/advisories/new).
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is this?
+      options:
+        - Page missing or not loading
+        - Broken link or anchor
+        - Layout or display problem
+        - Accessibility problem
+        - Wrong version or outdated text shown
+        - Social preview or search listing
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Page address
+      placeholder: "https://anytable.org/foundational/#on-doubt"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe what you saw and what you expected instead.
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      description: Useful for layout and display problems.
+      placeholder: "Example: Firefox 140 on Android"
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, the footer's version and commit line, or anything else useful.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: This is about the website, not the wording of the text.
+          required: true
+        - label: I have not included private or safeguarding-related information.
+          required: true
