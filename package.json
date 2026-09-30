@@ -1,0 +1,17 @@
+{
+  "name": "anytable-site",
+  "private": true,
+  "description": "Builds anytable.org from the any-table/anytable repository.",
+  "license": "CC0-1.0",
+  "type": "module",
+  "scripts": {
+    "build": "./build.sh",
+    "serve": "npx --yes serve public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "marked": "^18.0.14"
+  }
+}
